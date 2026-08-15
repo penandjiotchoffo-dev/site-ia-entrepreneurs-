@@ -1,1 +1,264 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crée ton site internet avec l'IA</title>
+<style>
+:root{
+  --yellow:#ffd21c; --yellow2:#ffb800; --red:#ef233c; --dark:#070b14;
+  --dark2:#0d1422; --text:#f8fafc; --muted:#aab4c5; --glass:rgba(255,255,255,.07);
+  --border:rgba(255,255,255,.13); --green:#36d17b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 50% -10%,#182642 0,#070b14 45%,#05070c 100%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.5;padding-bottom:92px}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,92%);margin:auto}
+.urgency{position:sticky;top:0;z-index:1000;background:linear-gradient(90deg,var(--red),#c9142e);padding:10px 14px;text-align:center;font-weight:800;font-size:14px;box-shadow:0 4px 22px rgba(0,0,0,.3)}
+.timer{color:#111;background:var(--yellow);padding:4px 9px;border-radius:8px;margin-left:6px;display:inline-block;min-width:78px}
+.glass{background:var(--glass);border:1px solid var(--border);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:24px;box-shadow:0 18px 50px rgba(0,0,0,.24)}
+.hero{padding:72px 0 46px}
+.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:46px;align-items:center}
+.badge{display:inline-flex;gap:8px;align-items:center;background:rgba(255,210,28,.12);border:1px solid rgba(255,210,28,.35);color:var(--yellow);padding:8px 13px;border-radius:999px;font-weight:800;font-size:13px}
+h1{font-size:clamp(42px,6vw,76px);line-height:.98;margin:18px 0;font-weight:950;letter-spacing:-2.5px}
+h1 span{color:var(--yellow)}
+.lead{font-size:20px;color:#d8dfeb;max-width:680px}
+.pricebox{margin:26px 0;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.price{font-size:42px;font-weight:950;color:var(--yellow)}
+.old{text-decoration:line-through;color:#8994a7}
+.save{background:rgba(54,209,123,.13);color:var(--green);padding:5px 10px;border-radius:8px;font-weight:800}
+.cta{display:inline-flex;justify-content:center;align-items:center;background:linear-gradient(135deg,var(--yellow),var(--yellow2));color:#101010;border:0;border-radius:14px;padding:16px 24px;font-weight:950;font-size:17px;box-shadow:0 10px 30px rgba(255,190,0,.24);cursor:pointer}
+.cta:hover{transform:translateY(-1px)}
+.micro{color:#94a0b3;font-size:13px;margin-top:10px}
+.mockup{padding:16px;position:relative;overflow:hidden}
+.browser{background:#f4f7fb;border-radius:16px;color:#101827;overflow:hidden;box-shadow:0 22px 50px rgba(0,0,0,.4)}
+.browserbar{height:34px;background:#dfe5ee;display:flex;align-items:center;gap:6px;padding:0 12px}
+.dot{width:8px;height:8px;border-radius:50%;background:#a3adbb}
+.site{padding:28px;background:linear-gradient(135deg,#eef4ff,#fff)}
+.site h3{font-size:28px;margin:0 0 8px}.site p{color:#586579}.sitebtn{display:inline-block;background:#1769ff;color:white;padding:10px 14px;border-radius:8px;font-weight:700}
+.ai{position:absolute;right:5%;top:7%;background:rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.2);padding:12px 16px;border-radius:15px;color:var(--yellow);font-weight:900;box-shadow:0 10px 30px #0007}
+section{padding:68px 0}
+.section-title{text-align:center;font-size:clamp(30px,4vw,48px);line-height:1.05;margin:0 auto 14px;font-weight:950;letter-spacing:-1px}
+.section-sub{text-align:center;color:var(--muted);max-width:720px;margin:0 auto 34px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{padding:24px}
+.icon{font-size:30px}.card h3{margin:10px 0 7px}.card p{color:var(--muted);margin:0}
+.problem{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.problem .bad{border-color:rgba(239,35,60,.3)} .problem .good{border-color:rgba(54,209,123,.28)}
+.list{list-style:none;padding:0;margin:0}.list li{padding:11px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.step{padding:24px;position:relative}.num{color:var(--yellow);font-size:14px;font-weight:900}
+.offer{padding:36px;display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}
+.offer-price{text-align:center;padding:30px}
+.offer-price .price{font-size:52px;display:block}
+.check{color:var(--green);font-weight:800}
+.beforeafter{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.beforeafter .box{padding:30px}.before{border:1px solid rgba(239,35,60,.35)}.after{border:1px solid rgba(54,209,123,.35)}
+.audience{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.faq{max-width:850px;margin:auto}.faq details{margin:10px 0;padding:18px 20px}.faq summary{cursor:pointer;font-weight:850}
+.final{padding:46px;text-align:center}
+.final .price{display:block}
+.sticky-buy{position:fixed;bottom:0;left:0;right:0;z-index:999;background:rgba(7,11,20,.92);border-top:1px solid var(--border);backdrop-filter:blur(16px);padding:12px 16px}
+.sticky-inner{width:min(1120px,94%);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.sticky-name{font-weight:900}.sticky-price{color:var(--yellow);font-size:22px;font-weight:950}
+footer{padding:30px 0;color:#788497;text-align:center;font-size:13px}
+@media(max-width:850px){
+ .grid2,.problem,.offer,.beforeafter{grid-template-columns:1fr}
+ .cards,.steps{grid-template-columns:1fr 1fr}
+ .audience{grid-template-columns:1fr}
+ .hero{padding-top:48px}
+ .sticky-name{display:none}.sticky-inner{justify-content:center}
+}
+@media(max-width:520px){
+ .cards,.steps{grid-template-columns:1fr}
+ h1{font-size:47px}
+ .lead{font-size:17px}
+ .cta{width:100%}
+ .urgency{font-size:12px}
+ section{padding:50px 0}
+}
+</style>
+</head>
+<body>
+
+<div class="urgency">
+🔥 OFFRE SPÉCIALE — LE PRIX ACTUEL EXPIRE DANS :
+<span class="timer" id="timer">23:59:59</span>
+</div>
+
+<header class="hero">
+  <div class="container grid2">
+    <div>
+      <span class="badge">🤖 FORMATION + ACCOMPAGNEMENT POUR ENTREPRENEURS</span>
+      <h1>CRÉE TON SITE INTERNET <span>AVEC L’IA</span></h1>
+      <p class="lead">De ton idée à ton site professionnel, même si tu ne sais pas coder.</p>
+      <p>Découvre une méthode simple pour utiliser l’intelligence artificielle afin de concevoir, personnaliser et préparer ton propre site internet.</p>
+      <div class="pricebox">
+        <span class="price">1 900 FCFA</span>
+        <span class="old">7 000 FCFA</span>
+        <span class="save">-73%</span>
+      </div>
+      <a class="cta" href="#acheter">🚀 JE VEUX CRÉER MON SITE</a>
+      <div class="micro">Accès après paiement • Paiement sécurisé • Produit digital</div>
+    </div>
+    <div class="mockup glass">
+      <div class="ai">✦ IA → SITE</div>
+      <div class="browser">
+        <div class="browserbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="site">
+          <h3>Bienvenue sur mon site</h3>
+          <p>Une présence professionnelle pour faire grandir votre activité.</p>
+          <span class="sitebtn">Découvrir mes services</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+<div class="container">
+  <h2 class="section-title">Tu veux un site, mais tu rencontres toujours les mêmes problèmes ?</h2>
+  <p class="section-sub">Tu n’as pas besoin de devenir développeur pour commencer à construire ta présence en ligne.</p>
+  <div class="problem">
+    <div class="card glass bad">
+      <h3>❌ Avant</h3>
+      <ul class="list">
+        <li>Les développeurs peuvent coûter cher</li>
+        <li>Tu attends pour chaque modification</li>
+        <li>Tu ne sais pas coder</li>
+        <li>Tu ne sais pas par où commencer</li>
+        <li>Ton activité reste difficile à trouver en ligne</li>
+      </ul>
+    </div>
+    <div class="card glass good">
+      <h3>🤖 Et si tu apprenais à le faire avec l’IA ?</h3>
+      <p>Une méthode guidée pour passer de ton idée aux premières pages de ton site, puis continuer à l’améliorer toi-même.</p>
+      <div class="pricebox"><span class="price">1 900 FCFA</span></div>
+      <a class="cta" href="#acheter">JE VEUX APPRENDRE</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="container">
+  <h2 class="section-title">Passe de l’idée au site en 4 étapes</h2>
+  <div class="steps">
+    <div class="step glass"><div class="num">01</div><h3>Définis ton projet</h3><p>Clarifie ton activité, ton offre et les pages nécessaires.</p></div>
+    <div class="step glass"><div class="num">02</div><h3>Utilise les prompts</h3><p>Apprends à donner les bonnes instructions aux outils IA.</p></div>
+    <div class="step glass"><div class="num">03</div><h3>Construis tes pages</h3><p>Structure ton contenu et ton interface étape par étape.</p></div>
+    <div class="step glass"><div class="num">04</div><h3>Personnalise & lance</h3><p>Adapte ton site et prépare sa mise en ligne.</p></div>
+  </div>
+  <div style="text-align:center;margin-top:28px"><span class="price">1 900 FCFA</span><a class="cta" href="#acheter">🚀 JE VEUX APPRENDRE</a></div>
+</div>
+</section>
+
+<section>
+<div class="container">
+  <h2 class="section-title">Ce que tu vas apprendre</h2>
+  <p class="section-sub">Des compétences pratiques, expliquées simplement pour avancer même en partant de zéro.</p>
+  <div class="cards">
+    <div class="card glass"><div class="icon">🤖</div><h3>IA & prompts</h3><p>Utiliser l’IA pour accélérer la création de ton site.</p></div>
+    <div class="card glass"><div class="icon">💻</div><h3>Pages web</h3><p>Créer et organiser les différentes pages utiles.</p></div>
+    <div class="card glass"><div class="icon">✍️</div><h3>Contenus</h3><p>Préparer tes textes et messages avec l’IA.</p></div>
+    <div class="card glass"><div class="icon">🎨</div><h3>Design</h3><p>Structurer une interface claire et professionnelle.</p></div>
+    <div class="card glass"><div class="icon">📱</div><h3>Mobile</h3><p>Comprendre les bases d’un site adapté au smartphone.</p></div>
+    <div class="card glass"><div class="icon">🔧</div><h3>Amélioration</h3><p>Corriger et faire évoluer ton site avec l’IA.</p></div>
+    <div class="card glass"><div class="icon">🌐</div><h3>Mise en ligne</h3><p>Comprendre les étapes nécessaires avant publication.</p></div>
+    <div class="card glass"><div class="icon">🚀</div><h3>Autonomie</h3><p>Continuer à modifier ton site après la création.</p></div>
+  </div>
+  <div style="text-align:center;margin-top:28px"><span class="price">1 900 FCFA</span><a class="cta" href="#acheter">🚀 JE PASSE À L’ACTION</a></div>
+</div>
+</section>
+
+<section>
+<div class="container">
+  <h2 class="section-title">Voici ce que tu reçois</h2>
+  <div class="cards">
+    <div class="card glass"><div class="icon">📖</div><h3>Guide / formation</h3><p>Méthode pratique et progressive.</p></div>
+    <div class="card glass"><div class="icon">🤖</div><h3>Prompts IA</h3><p>Prompts prêts à adapter à ton activité.</p></div>
+    <div class="card glass"><div class="icon">🛠️</div><h3>Méthode pratique</h3><p>Une approche pensée pour les débutants.</p></div>
+    <div class="card glass"><div class="icon">👨‍💻</div><h3>Accompagnement</h3><p>Une aide pour avancer lorsque tu bloques.</p></div>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="container">
+  <h2 class="section-title">Avant / Après</h2>
+  <div class="beforeafter">
+    <div class="box glass before"><h3>❌ AVANT</h3><p>« Je ne sais pas créer un site. »</p><p>« Je dois trouver un développeur. »</p><p>« Je ne sais pas modifier mon site. »</p></div>
+    <div class="box glass after"><h3>✅ APRÈS</h3><p>« Je sais utiliser l’IA pour avancer. »</p><p>« Je peux modifier mon site. »</p><p>« Je suis plus autonome. »</p></div>
+  </div>
+  <div style="text-align:center;margin-top:28px"><span class="price">1 900 FCFA</span><a class="cta" href="#acheter">JE VEUX CRÉER MON SITE</a></div>
+</div>
+</section>
+
+<section>
+<div class="container">
+  <h2 class="section-title">Cette formation est faite pour toi si...</h2>
+  <div class="audience">
+    <div class="card glass">✓ Tu es entrepreneur</div>
+    <div class="card glass">✓ Tu veux développer ta présence en ligne</div>
+    <div class="card glass">✓ Tu ne sais pas coder</div>
+    <div class="card glass">✓ Tu veux apprendre à utiliser l’IA</div>
+    <div class="card glass">✓ Tu veux devenir plus autonome</div>
+    <div class="card glass">✓ Tu veux passer de l’idée au site</div>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="container">
+  <h2 class="section-title">Des questions avant de commencer ?</h2>
+  <div class="faq">
+    <details class="glass"><summary>Est-ce que je dois savoir coder ?</summary><p>Non. Le parcours est pensé pour les débutants. Tu apprendras surtout à utiliser les bons outils et les bonnes instructions.</p></details>
+    <details class="glass"><summary>Est-ce adapté aux débutants ?</summary><p>Oui. Les étapes sont présentées progressivement, avec des exemples et des prompts à adapter.</p></details>
+    <details class="glass"><summary>Quels outils vais-je utiliser ?</summary><p>Le guide présente les outils nécessaires selon le parcours proposé et explique comment les utiliser.</p></details>
+    <details class="glass"><summary>Puis-je créer un site pour mon activité ?</summary><p>Oui, la méthode peut être adaptée à différents types d’activités et de projets.</p></details>
+    <details class="glass"><summary>Que se passe-t-il si je bloque ?</summary><p>L’accompagnement est prévu pour t’aider à avancer lorsque tu rencontres une difficulté.</p></details>
+    <details class="glass"><summary>Comment vais-je recevoir le produit ?</summary><p>Après paiement, l’accès et les instructions de livraison sont fournis selon les paramètres de ton offre.</p></details>
+  </div>
+</div>
+</section>
+
+<section id="acheter">
+<div class="container">
+  <div class="final glass">
+    <h2 class="section-title">Ton site internet peut commencer aujourd’hui.</h2>
+    <p class="section-sub">N’attends pas d’être un expert. Apprends à utiliser les bons outils et transforme ton idée en présence professionnelle en ligne.</p>
+    <span class="price">1 900 FCFA</span>
+    <div style="margin:8px 0 22px;color:#9ba6b7">Au lieu de <s>7 000 FCFA</s> • -73% si applicable</div>
+    <a class="cta" href="REMPLACE_PAR_TON_LIEN_CHARIOW">🚀 JE VEUX CRÉER MON SITE AVEC L’IA</a>
+    <div class="micro">Accès après paiement • Paiement sécurisé • Produit digital</div>
+  </div>
+</div>
+</section>
+
+<footer>
+  © 2026 — Crée ton site internet avec l’IA. Tous droits réservés.
+</footer>
+
+<div class="sticky-buy">
+  <div class="sticky-inner">
+    <div><div class="sticky-name">CRÉE TON SITE AVEC L’IA</div><div class="sticky-price">1 900 FCFA</div></div>
+    <a class="cta" href="REMPLACE_PAR_TON_LIEN_CHARIOW">ACHETER MAINTENANT</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  let end = Date.now() + 24*60*60*1000;
+  const el = document.getElementById('timer');
+  function tick(){
+    let diff = Math.max(0,end-Date.now());
+    let h=Math.floor(diff/3600000), m=Math.floor(diff%3600000/60000), s=Math.floor(diff%60000/1000);
+    el.textContent=[h,m,s].map(x=>String(x).padStart(2,'0')).join(':');
+  }
+  tick(); setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>
